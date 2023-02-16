@@ -62,37 +62,13 @@ const readCsv = (filePath, dbName, collectionName) => __awaiter(void 0, void 0, 
         console.log('error connecting to mongo db: ', err);
     });
 });
-const collectionName = 'reviewsCollection';
-const reviewsPath = '../reviews.csv';
-const reviewsName = 'reviews';
+const collectionName = 'reviewsPhotos';
 const reviewsPhotosPath = '../reviews_photos.csv';
-const reviewsPhotosName = 'reviewsPhotos';
-const productPath = '../products.csv';
-const productName = 'products';
-const dbs = [{ path: reviewsPath, name: 'reviewsDB' }, { path: reviewsPhotosPath, name: 'reviewsPhotosDB' }, { path: productPath, name: 'productDB' }];
-// // use a function with a for loop to read each csv file and insert into db
-const createDBs = (dbs) => __awaiter(void 0, void 0, void 0, function* () {
-    yield readCsv(reviewsPath, 'reviewsDB', reviewsName)
-        .then((data) => {
-        console.log('successful parsed data from csv file: ' + reviewsName);
-    })
-        .catch((err) => {
-        console.log('error from csv file: ', err);
-    });
-    yield readCsv(reviewsPhotosPath, 'reviewsDB', reviewsPhotosName)
-        .then((data) => {
-        console.log('successful parsed data from csv file: ' + reviewsPhotosName);
-    })
-        .catch((err) => {
-        console.log('error from csv file: ', err);
-    });
-    yield readCsv(productPath, 'reviewsDB', productName)
-        .then((data) => {
-        console.log('successful parsed data from csv file: ' + productName);
-    })
-        .catch((err) => {
-        console.log('error from csv file: ', err);
-    });
+readCsv(reviewsPhotosPath, 'reviewsDB', collectionName)
+    .then((data) => {
+    console.log('successful parsed data from csv file: ', data);
+})
+    .catch((err) => {
+    console.log('error from csv file: ', err);
 });
-createDBs(dbs);
-//# sourceMappingURL=etl.js.map
+//# sourceMappingURL=reviewsPhotosMongoETL.js.map

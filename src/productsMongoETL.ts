@@ -53,60 +53,13 @@ const readCsv = async (filePath: string, dbName: string, collectionName: string)
     });
 };
 
-const collectionName = 'reviewsCollection';
-
+const collectionName = 'reviews';
 const reviewsPath = '../reviews.csv';
-const reviewsName = 'reviews';
 
-const reviewsPhotosPath = '../reviews_photos.csv';
-const reviewsPhotosName = 'reviewsPhotos';
-
-const productPath = '../products.csv';
-const productName = 'products';
-const dbs = [{path: reviewsPath, name: 'reviewsDB'}, {path: reviewsPhotosPath, name: 'reviewsPhotosDB'}, {path: productPath, name: 'productDB'}];
-
-// readCsv(reviewsPath, 'reviewsDB', collectionName)
-//   .then((data) => {
-//     console.log('successful parsed data from csv file: ', data);
-//   })
-//   .catch((err) => {
-//     console.log('error from csv file: ', err);
-//   });
-
-// create a typescript interface for dbs array of objects
-interface Dbs {
-  path: string,
-  name: string
-}
-
-
-// // use a function with a for loop to read each csv file and insert into db
-const createDBs = async (dbs: Dbs[]) => {
-  
-  await readCsv(reviewsPath, 'reviewsDB', reviewsName)
-    .then((data) => {
-      console.log('successful parsed data from csv file: ' + reviewsName);
-    })
-    .catch((err) => {
-      console.log('error from csv file: ', err);
-    });
-
-  await readCsv(reviewsPhotosPath, 'reviewsDB', reviewsPhotosName)
-    .then((data) => {
-      console.log('successful parsed data from csv file: ' + reviewsPhotosName);
-    })
-    .catch((err) => {
-      console.log('error from csv file: ', err);
-    });
-  
-  await readCsv(productPath, 'reviewsDB', productName)
-    .then((data) => {
-      console.log('successful parsed data from csv file: ' + productName);
-    })
-    .catch((err) => {
-      console.log('error from csv file: ', err);
-    });
-
-};
-
-createDBs(dbs);
+readCsv(reviewsPath, 'reviewsDB', collectionName)
+  .then((data) => {
+    console.log('successful parsed data from csv file: ', data);
+  })
+  .catch((err) => {
+    console.log('error from csv file: ', err);
+  });
