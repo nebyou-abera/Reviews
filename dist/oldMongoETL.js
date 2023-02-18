@@ -62,13 +62,13 @@ const readCsv = (filePath, dbName, collectionName) => __awaiter(void 0, void 0, 
         console.log('error connecting to mongo db: ', err);
     });
 });
-const collectionName = 'reviewsPhotos';
-const reviewsPhotosPath = '../reviews_photos.csv';
-readCsv(reviewsPhotosPath, 'reviewsDB', collectionName)
+const collectionName = 'reviews';
+const reviewsPath = '../reviews.csv';
+readCsv(reviewsPath, 'reviewsDB', collectionName)
     .then((data) => {
     console.log('successful parsed data from csv file: ', data);
 })
     .catch((err) => {
     console.log('error from csv file: ', err);
 });
-//# sourceMappingURL=reviewsPhotosMongoETL.js.map
+//# sourceMappingURL=oldMongoETL.js.map

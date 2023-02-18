@@ -26,9 +26,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.url = exports.dbName = void 0;
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
+// import cors from 'cors';
+exports.dbName = 'reviewsDevelopment';
+exports.url = `mongodb://localhost:27017/${exports.dbName}`;
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
@@ -36,6 +40,8 @@ console.log(__dirname);
 console.log(process.env.PORT);
 app.get('/', (req, res) => {
     res.send('Hello World!');
+});
+app.get('/reviews', (req, res) => {
 });
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
