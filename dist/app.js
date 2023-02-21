@@ -57,6 +57,7 @@ app.get('/reviews', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     (0, ETLProducts_1.getReviewsByProductId)(productId)
         .then((data) => {
         console.log('in getReviewsByProductId retrieved data: ', data);
+        //convert data to correct format
         res.send(data);
     });
 }));

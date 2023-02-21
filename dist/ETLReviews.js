@@ -37,13 +37,14 @@ const parseReviews = (path = exports.reviewsPath) => {
     const parsedStream = papaparse_1.default.parse(papaparse_1.default.NODE_STREAM_INPUT, header);
     stream.pipe(parsedStream);
     parsedStream.on('data', (row) => {
-        const date = new Date(Number(row.date));
-        const dateString = date.toISOString();
+        // const date = new Date(Number(row.date));
+        // const dateString = date.toISOString();
         const obj = {
             id: Number(row.id),
             'product_id': Number(row.product_id),
             rating: Number(row.rating),
-            date: dateString,
+            // changed from dateString
+            date: Number(row.date),
             summary: String(row.summary),
             body: String(row.body),
             recommend: (0, exports.parseBoolean)(row.recommend),
@@ -63,13 +64,11 @@ const parseReviews = (path = exports.reviewsPath) => {
 };
 exports.parseReviews = parseReviews;
 const addOneReviewToReviews = (review) => {
-    const date = new Date(Number(review.date));
-    const dateString = date.toISOString();
     const obj = {
         id: Number(review.id),
         'product_id': Number(review.product_id),
         rating: Number(review.rating),
-        date: dateString,
+        date: Number(review.date),
         summary: String(review.summary),
         body: String(review.body),
         recommend: (0, exports.parseBoolean)(review.recommend),

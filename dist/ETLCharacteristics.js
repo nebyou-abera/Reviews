@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.seedCharacteristics = void 0;
+exports.seedCharacteristics = exports.getCharacteristics = void 0;
 const fs_1 = __importDefault(require("fs"));
 const papaparse_1 = __importDefault(require("papaparse"));
 const Characteristics_1 = require("./Characteristics");
@@ -40,6 +40,12 @@ const parseCharacteristics = () => {
         console.log('finished parsing csv file');
     });
 };
+// retrieve characteristics from db
+const getCharacteristics = (productId) => __awaiter(void 0, void 0, void 0, function* () {
+    const characteristics = yield Characteristics_1.Characteristics.find({ 'product_id': productId });
+    return characteristics;
+});
+exports.getCharacteristics = getCharacteristics;
 const seedCharacteristics = () => __awaiter(void 0, void 0, void 0, function* () {
     mongoose_1.default.set('strictQuery', false);
     mongoose_1.default.connect(app_1.url, { dbName: app_2.dbName })

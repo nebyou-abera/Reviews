@@ -151,6 +151,7 @@ const getReviewsByProductId = (productId) => __awaiter(void 0, void 0, void 0, f
         Products_1.Products.findOne({ 'product_id': Number(productId) })
             .then((data) => {
             console.log('in getReviewsByProductId retrieved data: ', data);
+            // convert data into correct format
             return data;
         })
             .catch((err) => {
