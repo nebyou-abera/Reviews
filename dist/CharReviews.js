@@ -7,7 +7,7 @@ exports.CharReviewsSchema = new mongoose_1.Schema({
     id: Number,
     'characteristic_id': Number,
     'review_id': Number,
-    value: Number
+    value: String
 });
 exports.CharReviews = (0, mongoose_1.model)(charReviewsCollectionName, exports.CharReviewsSchema);
 //# sourceMappingURL=CharReviews.js.map
