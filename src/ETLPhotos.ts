@@ -5,7 +5,7 @@ import {url} from './app';
 import { dbName } from './app';
 import { Photos } from './Photos';
 
-const photosPath = '../csv/reviews_photos.csv';
+export const photosPath = '../csv/reviews_photos.csv';
 
 const parsePhotos = () => {
   const tempStorage :any[] = [];
@@ -27,6 +27,10 @@ const parsePhotos = () => {
     Photos.insertMany(tempStorage);
     console.log('first data: ', tempStorage[0]);
     console.log('finished parsing csv file');
+  });
+
+  parsedStream.on('error', (err) => {
+    console.log(err);
   });
 };
 

@@ -22,15 +22,39 @@ app.get('/reviews', async (req, res) => {
   const productId = Number(req.query.product_id);
   // const page = Number(req.query.page);
   // const count = Number(req.query.count);
-  // const sort = req.query.sort;
-  console.log('in get reviews productId: ', productId);
-  getReviewsByProductId(productId)
-    .then((data) => {
-      console.log('in getReviewsByProductId retrieved data: ', data);
-      //convert data to correct format
-      
-      res.send(data);
-    });
+
+  const data: any = await getReviewsByProductId(productId);
+  // convert data into correct response format
+  const results = data.results.map((review: any) => {
+    // convert date to ISO string
+    const date = new Date(review.date);
+    const dateString = date.toISOString();
+    return {
+      'review_id': review.id,
+      rating: review.rating,
+      summary: review.summary,
+      recommend: review.recommend,
+      response: review.response,
+      body: review.body,
+      date: dateString,
+      'reviewer_name': review.reviewer_name,
+      helpfulness: review.helpfulness,
+      photos: review.photos.map((photo: any) => {
+        return {
+          id: photo.id,
+          url: photo.url
+        };
+      })
+    };
+  });
+  const answerObj = {
+    product: data.product_id,
+    page: 1,
+    count: 5,
+    results: results
+  };
+  // console.log('answerObj: ', answerObj);
+  res.send(answerObj);
 });
 
 app.post('/reviews', (req, res) => {
@@ -65,6 +89,7 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
 });
 
 app.put('/reviews/:review_id/report', (req, res) => {
+  // req.params.review_id
   // reportReview(req.body.reviewId)
   //   .then((review: any) => {
   //     console.log('successfully reported review');
