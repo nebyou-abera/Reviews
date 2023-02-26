@@ -1,15 +1,14 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-dotenv.config();
-import axios from 'axios';
-import * as path from 'path';
-import mongoose from 'mongoose';
 import { getReviewsByProductId } from './ETLProducts';
+dotenv.config();
+// import axios from 'axios';
+// import * as path from 'path';
+// import mongoose from 'mongoose';
 // import cors from 'cors';
 
 export const dbName = 'reviewsDevelopment';
-export const url = `mongodb://localhost:27017/${dbName}`;
-
+export const url = `mongodb://127.0.0.1:27017/${dbName}`;
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,14 +29,14 @@ app.get('/reviews', async (req, res) => {
     const date = new Date(review.date);
     const dateString = date.toISOString();
     return {
-      'review_id': review.id,
+      review_id: review.id,
       rating: review.rating,
       summary: review.summary,
       recommend: review.recommend,
       response: review.response,
       body: review.body,
       date: dateString,
-      'reviewer_name': review.reviewer_name,
+      reviewer_name: review.reviewer_name,
       helpfulness: review.helpfulness,
       photos: review.photos.map((photo: any) => {
         return {

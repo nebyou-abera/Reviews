@@ -1,7 +1,7 @@
 import fs from 'fs';
 import papa from 'papaparse';
-import { Reviews } from './Reviews';
 import mongoose from 'mongoose';
+import { Reviews } from './Reviews';
 import { url } from './app';
 import { dbName } from './app';
 import { ReviewsByProductSchema } from './ReviewsByProduct';
@@ -10,6 +10,7 @@ import { Products } from './Products';
 import { reviewsPath } from './ETLReviews';
 import { parseBoolean } from './ETLReviews';
 import { photosPath } from './ETLPhotos';
+
 export const productsPath = '../csv/products.csv';
 
 export const parseProducts = async (path: string) => {

@@ -38,11 +38,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.url = exports.dbName = void 0;
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
-dotenv.config();
 const ETLProducts_1 = require("./ETLProducts");
+dotenv.config();
+// import axios from 'axios';
+// import * as path from 'path';
+// import mongoose from 'mongoose';
 // import cors from 'cors';
 exports.dbName = 'reviewsDevelopment';
-exports.url = `mongodb://localhost:27017/${exports.dbName}`;
+exports.url = `mongodb://127.0.0.1:27017/${exports.dbName}`;
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
@@ -59,14 +62,14 @@ app.get('/reviews', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const date = new Date(review.date);
         const dateString = date.toISOString();
         return {
-            'review_id': review.id,
+            review_id: review.id,
             rating: review.rating,
             summary: review.summary,
             recommend: review.recommend,
             response: review.response,
             body: review.body,
             date: dateString,
-            'reviewer_name': review.reviewer_name,
+            reviewer_name: review.reviewer_name,
             helpfulness: review.helpfulness,
             photos: review.photos.map((photo) => {
                 return {
@@ -114,6 +117,7 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     //   });
 });
 app.put('/reviews/:review_id/report', (req, res) => {
+    // req.params.review_id
     // reportReview(req.body.reviewId)
     //   .then((review: any) => {
     //     console.log('successfully reported review');
